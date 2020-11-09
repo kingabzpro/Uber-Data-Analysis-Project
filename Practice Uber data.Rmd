@@ -1,0 +1,17 @@
+## loading Library
+
+```{r}
+library(ggplot2)
+install.packages('ggthemes')
+install.packages('lubridate')
+install.packages('tidyr')
+install.packages('DT')
+install.packages('scales')
+library(ggthemes)
+library(lubridate)
+library(dplyr)
+library(tidyr)
+library(DT)
+library(scales)
+```
+
