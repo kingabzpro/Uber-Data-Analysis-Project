@@ -55,4 +55,32 @@ data_2014$minute <- factor(minute(hms(data_2014$Time)))
 data_2014$second <- factor(second(hms(data_2014$Time)))
 head(data_2014)
 ```
+## datatable
+```{r}
+hour_data <- data_2014 %>%
+           group_by(hour) %>%
+               summarize(Total = n()) 
+datatable(hour_data)
+```
+## Visualising by hour
+
+```{r}
+ggplot(hour_data, aes(hour, Total)) + 
+        geom_bar( stat = "identity", fill = "steelblue", color = "red") +
+           ggtitle("Trips Every Hour") +
+            theme(legend.position = "none") +
+            scale_y_continuous(labels = comma)
+```
+
+## Visualising By month By hour
+```{r}
+month_hour <- data_2014 %>%
+          group_by(month, hour) %>%
+             dplyr::summarize(Total = n())
+
+ggplot(month_hour, aes(hour, Total, fill = month)) + 
+       geom_bar( stat = "identity") +
+          ggtitle("Trips by Hour and Month") +
+           scale_y_continuous(labels = comma)
+```
 
